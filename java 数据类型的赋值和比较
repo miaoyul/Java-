@@ -1,0 +1,105 @@
+数据类型：8种基本类型，其余为引用类型
+基本：byte、short、int、long、float、double、char、boolean
+区别：
+
+                        基本数据类型       引用数据类型
+概念：                  变量（单纯的值）     对象（引用）
+储存位置：              在栈中储存         在栈中存引用，在堆中存具体对象的属性值
+赋值方式                直接赋值           new,String类和包装器类可以直接赋值
+//包装类型的赋值和比较
+package com.company.paroject.compare;
+
+public class PackageType {
+	public static void main(String[] args) {
+		//声明并直接福赋值包装类型
+		Integer num1 = 10;
+		Integer num2 = 10;
+		
+		//直接赋值的包装类型的==比较
+		System.out.println(num1 == num2);       //true  还是比较值
+		
+		//equals比较
+		System.out.println(num1.equals(num2));   //true 比较属性值，内容，值都是20
+		//声明并通过new赋值包装地址
+		Integer num3 = new Integer(200);
+		Integer num4 = new Integer(200);
+		
+		System.out.println(num3 == num4);       //false  new对象存在在堆空间内，占用不同的空间，比较的是两个的虚地址
+		//equals比较
+		 System.out.println(num3.equals(num4));  //true 比较的是两个属性值，内容都是200
+	}
+
+}
+/***********************************************************************************************************************/
+//String赋值和比较
+package com.company.paroject.compare;
+
+public class StringType {
+	public static void main(String[] args) {
+		// 注意这里使用直接赋值
+		String string1 = "abcd";
+		String string2 = "abcd";
+
+		// 注意，这里是通过创建对象的方式来进行赋值
+		String string3 = new String("abc");
+		String string4 = new String("abc");
+
+		System.out.println("-------------------------------------");
+		// 这里比较的是数据内容
+		System.out.println(string1 == string2); // true
+
+		// 这里比较的是数据内存中的虚地址
+		System.out.println(string3 == string4); // false
+
+		// 比较字符串内容是否相等需要其equals方法，参数为Object类型；
+		System.out.println("equals:" + string3.equals(string4));
+
+		// 数据内容和虚地址比较
+		System.out.println(string1 == string3); // false
+
+		// 数据内容不一样
+		System.out.println(6 == 5); // false
+
+		// 数据内容一样
+		System.out.println(5 == 5); // true
+
+	}
+
+}
+/**********************************************************************************************************************/
+//数组类型的赋值和比较
+package com.company.paroject.compare;
+
+public class ArryType {
+
+	public static void main(String[] args) {
+           // 声明数组并赋值
+		int[] num1 = {0,1,2,3,4,5};
+		int[] num2 = {0,1,2,3,4,5};
+		
+		//数组的赋值比较，注意：所有的通过任何方式创建的数组其值都是储存在堆里面
+		System.out.println(num1 == num2);    //false  内存地址不一样
+		
+		//数组元素的==比较
+		System.out.println(num1[4] == num2[4]);      //ture
+		
+		//数组的equals比较
+		 System.out.println(num1.equals(num2));      //false
+		/*///////////////////////////////////////////////////
+		 * 数组是一个Object对象，所以直接使用数组的equlse方法，实际上是使用Object类的equlse方法。
+		 * object类的equlse（）方法，实质还是在使用==比较对象
+		 */
+		Integer[] num3 = new Integer[] {0,1,2,3,4};
+		Integer[] num4 = new Integer[] {0,1,2,3,4};
+		
+		System.out.println(num3 == num4);          //false
+		System.out.println(num3[4] == num4[4]);      //true
+		
+	
+		System.out.println(num3.equals(num4));       //false
+		
+		
+		
+	}
+}
+/*****************************************************************************/
